@@ -1,0 +1,216 @@
+#main {
+    position: absolute;
+    height: 840px;
+    width: 400px;
+    left: 15%;
+    margin: 0px;
+    perspective: 400px;
+    perspective: 200px;
+    perspective-origin: 80%;
+}
+.board{
+    position:absolute;
+    top:50px;
+    left: 15%;
+    /*width: 680px;*/
+    width: 840px;
+    height: 520px;
+    border: ridge saddlebrown 50px;
+    transform: rotateY(6deg);
+    transform: rotateX(6deg);
+}
+.raw{
+    width: 840px;
+    height:60px;
+}
+.r00{
+    float: left;
+    width: 100px;
+    height: 60px;
+    background-color: white;
+    /*background-color: #ffbc54;*/
+}
+.r01{
+    float: left;
+    width: 100px;
+    height: 60px;
+
+    /*background-color: black;*/
+    background-color: #af5314;
+}
+
+
+.top{
+    width: 840px;
+    height: 20px;
+}
+.t{
+    float: left;
+    width:105px;
+    background-color: deepskyblue;
+    height: 20px;
+    text-align: center;
+    font-size: 14px ;
+    font-weight: bolder;
+}
+.bot{
+    width: 840px;
+    height: 20px;
+}
+.b{
+    float: left;
+    width:105px;
+    background-color: deepskyblue;
+    height: 20px;
+    text-align: center;
+    font-size: 14px ;
+    font-weight: bolder;
+}
+.left{
+    float: left;
+    width:20px;
+    background-color: deepskyblue;
+    height: 60px;
+    text-align: center;
+    font-size: 14px ;
+    font-weight: bolder;
+}
+.right{
+    float: left;
+    width:20px;
+    background-color: deepskyblue;
+    height: 60px;
+    text-align: center;
+    font-size: 14px ;
+    font-weight: bolder;
+}
+.img{
+    margin-bottom: 1cm;
+    height: 60px;
+    width:80px;
+}
+
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+
+    position: relative;
+    border: none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 30px;
+}
+
+.r00:hover{
+    background-color: lawngreen;
+}
+.r01:hover{
+    background-color: lawngreen;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+
+#btn{
+    position:absolute;
+    top:15%;
+    left: 15%;
+}
+#clz{
+    height: 200px;
+    width:850px;
+}
+#img{
+    top: 50%;
+    left: 15%;
+    width: 850px;
+    height: 200px;
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+}
+@keyframes example {
+    0%   {background-color: darkturquoise; left:0px;}
+    50%  {background-color: yellow; left:600px;}
+    100% {background-color: darkturquoise; left:0px;}
+}
+#myProgress {
+    position: absolute;
+    left: 15%;
+    top:35%;
+    text-align: center;
+    width: 800px;
+    background-color: #ddd;
+}
+
+#myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #4CAF50;
+}
+
+.selectedBox{
+    background-color:#ffdf05;
+}
+.TrapBox{
+    background-color:#FF851B;
+}
