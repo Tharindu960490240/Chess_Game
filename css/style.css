@@ -250,6 +250,40 @@ dialog.over { width: min(400px, calc(100vw - 24px)); text-align: center; }
   font-weight: 600; font-size: 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
 }
 
+/* ---------- how to play ---------- */
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+.btn.ghost:hover:not(:disabled) { background: var(--surface); border-color: var(--surface); color: var(--text); }
+.learn-link { margin: 12px 0 0; text-align: center; color: var(--muted); font-size: 14px; }
+.link { border: 0; background: none; padding: 0; color: var(--brass-hi); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+dialog.learn { width: min(720px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); }
+dialog.learn .dlg { display: flex; flex-direction: column; max-height: calc(100dvh - 34px); }
+.learn-nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+.learn-nav a { flex: none; padding: 6px 12px; border-radius: 99px; background: var(--table-2); border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 600; text-decoration: none; }
+.learn-nav a:hover { color: var(--text); }
+.learn .dlg > * { flex: none; }
+.learn .dlg > .learn-body { flex: 1 1 auto; min-height: 0; }
+.learn-body { overflow-y: auto; padding: 4px 2px 8px; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.learn-body section { padding: 14px 0 6px; }
+.learn-body section + section { border-top: 1px solid var(--line); }
+.learn-body h3 { margin: 0 0 8px; font-family: var(--display); font-weight: 650; font-size: 20px; }
+.learn-body p, .learn-body li { max-width: 68ch; }
+.learn-body p { margin: 0 0 10px; }
+.learn-body ul, .learn-body ol { margin: 0 0 8px; padding-left: 20px; }
+.learn-body li { margin-bottom: 6px; }
+.learn-body li::marker { color: var(--brass); }
+.muted { color: var(--muted); font-size: 14px; }
+.pieces-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 10px; margin: 6px 0 12px; }
+.pc-card { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 12px; align-items: start; padding: 10px; border-radius: 12px; background: var(--table-2); border: 1px solid var(--line); }
+.pc-card h4 { margin: 0 0 2px; font-size: 15px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.pc-card h4 small { color: var(--brass-hi); font-weight: 700; font-size: 12px; white-space: nowrap; }
+.pc-card p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.mini { display: grid; grid-template-columns: repeat(5, 1fr); width: 100px; height: 100px; border-radius: 4px; overflow: hidden; }
+.mini i { position: relative; background: var(--sq-light); }
+.mini i.d { background: var(--sq-dark); }
+.mini i.p { background-size: 92%; background-position: center; background-repeat: no-repeat; }
+.mini i.m::after { content: ""; position: absolute; inset: 33%; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 1.5px rgba(27, 20, 8, .5); }
+.mini i.x { box-shadow: inset 0 0 0 2.5px var(--red); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   :root { --bar: 50px; --head: 56px; --board: min(calc(100vw - 24px), calc(100dvh - var(--head) - 2 * var(--bar) - 150px), 640px); }
@@ -277,6 +311,8 @@ dialog.over { width: min(400px, calc(100vw - 24px)); text-align: center; }
   .actions #btn-resign span { display: inline; }
   .btn#btn-new { padding: 0 12px; }
   #btn-camera { display: none; }
+  #btn-learn span { display: none; }
+  #btn-learn { width: 40px; padding: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }

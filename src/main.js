@@ -555,6 +555,44 @@ $('#over-again').addEventListener('click', () => { closeDialog($('#dlg-over')); 
 $('#over-review').addEventListener('click', () => { closeDialog($('#dlg-over')); goTo(0); });
 $('#over-pgn').addEventListener('click', copyPgn);
 
+// how to play
+const PIECE_HELP = [
+  ['K', 'King', 'Protect it', 'One square in any direction. It can never move onto a square that is attacked.'],
+  ['Q', 'Queen', '9', 'Any number of squares in a straight line or diagonal. Your strongest piece.'],
+  ['R', 'Rook', '5', 'Any number of squares straight up, down or sideways.'],
+  ['B', 'Bishop', '3', 'Any number of squares diagonally, so it always stays on one colour.'],
+  ['N', 'Knight', '3', 'An L shape: two squares one way, then one to the side. It jumps over pieces.'],
+  ['P', 'Pawn', '1', 'One square forward, or two on its first move. It captures one square diagonally forward and never moves back.']
+];
+function miniBoard(t) {
+  // 5x5 board, piece in the middle (pawn one row lower)
+  const pr = t === 'P' ? 3 : 2, pc = 2, marks = new Set(), enemies = new Set();
+  const add = (r, c) => { if (r >= 0 && r < 5 && c >= 0 && c < 5) marks.add(r * 5 + c); };
+  const lines = { R: [[1,0],[-1,0],[0,1],[0,-1]], B: [[1,1],[1,-1],[-1,1],[-1,-1]] };
+  lines.Q = lines.R.concat(lines.B);
+  if (lines[t]) for (const [dr, dc] of lines[t]) for (let k = 1; k < 5; k++) add(pr + dr * k, pc + dc * k);
+  if (t === 'K') for (const [dr, dc] of lines.Q) add(pr + dr, pc + dc);
+  if (t === 'N') for (const [dr, dc] of [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]) add(pr + dr, pc + dc);
+  if (t === 'P') { add(2, 2); add(1, 2); enemies.add(2 * 5 + 1); enemies.add(2 * 5 + 3); }
+  let html = '';
+  for (let i = 0; i < 25; i++) {
+    const r = Math.floor(i / 5), c = i % 5, cls = ((r + c) % 2 ? 'd' : '');
+    if (i === pr * 5 + pc) html += `<i class="${cls} p" style="background-image:url('${pieceUrl(t)}')"></i>`;
+    else if (enemies.has(i)) html += `<i class="${cls} p x" style="background-image:url('${pieceUrl('p')}')"></i>`;
+    else html += `<i class="${cls}${marks.has(i) ? ' m' : ''}"></i>`;
+  }
+  return `<div class="mini" aria-hidden="true">${html}</div>`;
+}
+$('#pieces-grid').innerHTML = PIECE_HELP.map(([t, name, val, text]) =>
+  `<div class="pc-card">${miniBoard(t)}<div><h4>${name}<small>${val === 'Protect it' ? val : 'Worth ' + val}</small></h4><p>${text}</p></div></div>`).join('');
+$('#btn-learn').addEventListener('click', () => openDialog($('#dlg-learn')));
+$('#open-learn').addEventListener('click', () => { closeDialog($('#dlg-new')); openDialog($('#dlg-learn')); });
+$('#dlg-learn').addEventListener('close', () => { if (!S.game.history.length && !store.get('chess.lastSetup', null)) openDialog($('#dlg-new')); });
+document.querySelectorAll('.learn-nav a').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
 // settings
 $('#btn-settings').addEventListener('click', () => openDialog($('#dlg-settings')));
 const themeBox = $('#themes');

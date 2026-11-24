@@ -8,6 +8,7 @@ Open `index.html` in a browser. Or open `dist/index.html`, a single file with ev
 
 - **Move:** drag a piece, or tap it and tap a highlighted square.
 - **Camera:** drag empty space to orbit, scroll or pinch to zoom, use the reset button to re-centre.
+- **New to chess?** Press **How to play** in the top bar for a short guide with move diagrams for every piece.
 - **Keyboard:** ← → step through moves, Home and End jump, F flips the board, Ctrl+Z takes back a move, Esc cancels a selection.
 
 ## Features
@@ -20,6 +21,23 @@ Open `index.html` in a browser. Or open `dist/index.html`, a single file with ev
 - Your game and settings are saved in the browser, so a reload picks up where you left off.
 - Works on phones and tablets (touch drag) and respects reduced-motion settings. Needs a browser with WebGL (any current Chrome, Edge, Firefox or Safari).
 
+## Deploy to Vercel
+
+The project includes `vercel.json`, so no settings are needed. Vercel runs `npm install` and `npm run build`, then serves the `dist` folder.
+
+**From GitHub (recommended, redeploys on every push):**
+
+1. Push this folder to a GitHub repository.
+2. In Vercel, choose **Add New → Project**, pick the repository and press **Deploy**.
+
+**From your computer with the Vercel CLI:**
+
+```
+npm i -g vercel
+vercel          # first run links the project and gives a preview URL
+vercel --prod   # publishes to your production URL
+```
+
 ## Project layout
 
 ```
@@ -30,7 +48,8 @@ js/app.js         built bundle that index.html loads
 src/              source for the interface (main.js, board3d.js, sound.js, pieces.js)
 assets/pieces/    piece icons (SVG) for the promotion picker and captured pieces
 tests/            rules tests (perft counts against known positions)
-dist/index.html   single-file build
+dist/index.html   single-file build (what Vercel serves)
+vercel.json       Vercel build settings
 ```
 
 ## Develop

@@ -24,6 +24,7 @@
   <symbol id="i-prev" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
   <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
   <symbol id="i-last" viewBox="0 0 24 24"><path d="m7 18 6-6-6-6"/><path d="M17 6v12"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
 </svg>
 
@@ -32,6 +33,7 @@
     <h1 class="brand"><span class="brand-mark" aria-hidden="true"></span>Chess</h1>
     <div class="top-actions">
       <button class="icon-btn" id="btn-camera" title="Reset camera" aria-label="Reset camera"><svg><use href="#i-camera"/></svg></button>
+      <button class="btn ghost" id="btn-learn"><svg><use href="#i-book"/></svg><span>How to play</span></button>
       <button class="icon-btn" id="btn-settings" title="Settings" aria-label="Settings"><svg><use href="#i-gear"/></svg></button>
       <button class="btn primary" id="btn-new">New game</button>
     </div>
@@ -145,6 +147,72 @@
       </div>
     </div>
     <button class="btn primary wide" id="start-game" autofocus>Start game</button>
+    <p class="learn-link">New to chess? <button class="link" id="open-learn">Learn how to play</button></p>
+  </div>
+</dialog>
+
+<!-- How to play -->
+<dialog id="dlg-learn" class="learn" aria-labelledby="learn-title">
+  <div class="dlg">
+    <header class="dlg-head">
+      <h2 id="learn-title">How to play chess</h2>
+      <button class="icon-btn" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    </header>
+    <nav class="learn-nav" aria-label="Sections">
+      <a href="#learn-goal">Goal</a><a href="#learn-controls">Controls</a><a href="#learn-pieces">Pieces</a><a href="#learn-special">Special moves</a><a href="#learn-end">Check and draws</a><a href="#learn-tips">Tips</a>
+    </nav>
+    <div class="learn-body">
+      <section id="learn-goal">
+        <h3>The goal</h3>
+        <p>Trap the other player's king so it can't escape. That's called <strong>checkmate</strong>, and it wins the game. The king is never actually taken.</p>
+        <p>White always moves first, then the players take turns, one move each. You can't skip a turn.</p>
+      </section>
+      <section id="learn-controls">
+        <h3>Controls in this game</h3>
+        <ul>
+          <li><strong>Move a piece:</strong> tap it, then tap a square. Or drag it there.</li>
+          <li><strong>Dots</strong> show where the piece can go. <strong>Rings</strong> show pieces you can capture.</li>
+          <li>A piece you can't move won't pick up, so the game never lets you make an illegal move.</li>
+          <li><strong>Turn the board:</strong> drag an empty area. Scroll or pinch to zoom. The reset button puts the camera back.</li>
+          <li><strong>Stuck?</strong> Press Hint. <strong>Made a mistake?</strong> Press Take back.</li>
+        </ul>
+      </section>
+      <section id="learn-pieces">
+        <h3>How each piece moves</h3>
+        <p class="muted">The number is the piece's rough value, which helps you judge a trade. Gold dots are squares it can reach.</p>
+        <div class="pieces-grid" id="pieces-grid"></div>
+        <p>To capture, move onto the square of an enemy piece and it's removed. Only the knight can jump over other pieces.</p>
+      </section>
+      <section id="learn-special">
+        <h3>Special moves</h3>
+        <ul>
+          <li><strong>Castling</strong> tucks your king into safety. Move the king two squares toward a rook, and the rook hops over to the king's other side. It's only allowed if neither piece has moved yet, nothing stands between them, and the king isn't in check or crossing an attacked square.</li>
+          <li><strong>Promotion:</strong> a pawn that reaches the far side becomes a queen, rook, bishop or knight. You choose, and almost everyone picks a queen.</li>
+          <li><strong>En passant:</strong> if an enemy pawn moves two squares and lands right beside your pawn, you can capture it as if it had moved only one. You must do it on the very next move.</li>
+        </ul>
+      </section>
+      <section id="learn-end">
+        <h3>Check, checkmate and draws</h3>
+        <ul>
+          <li><strong>Check:</strong> your king is under attack, and its square glows red. You must fix it right away by moving the king, blocking the attack, or capturing the attacker.</li>
+          <li><strong>Checkmate:</strong> the king is in check and there's no way out. The game ends.</li>
+          <li><strong>Draw:</strong> nobody wins if the player to move has no legal move but isn't in check (stalemate), neither side has enough pieces left to checkmate, 50 moves pass with no capture or pawn move, or the same position appears three times.</li>
+          <li>With a clock, running out of time loses the game. You can also resign.</li>
+        </ul>
+      </section>
+      <section id="learn-tips">
+        <h3>Tips for your first games</h3>
+        <ol>
+          <li>Start with a centre pawn, like the pawn in front of your king moving two squares.</li>
+          <li>Bring out your knights and bishops early. Keep the queen home for the first few moves.</li>
+          <li>Castle early to keep your king safe.</li>
+          <li>Before every move, ask: what is my opponent threatening?</li>
+          <li>Don't give pieces away for free. Use the values above to check a trade.</li>
+          <li>Play the computer on Easy with legal-move dots turned on, and use Hint whenever you're unsure.</li>
+        </ol>
+      </section>
+    </div>
+    <button class="btn primary wide" data-close>Got it</button>
   </div>
 </dialog>
 

@@ -10,5 +10,8 @@
   "devDependencies": {
     "esbuild": "^0.28.2",
     "three": "^0.187.0"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
