@@ -1,0 +1,14 @@
+{
+  "name": "chess-game",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Chess in the browser with a 3D board, full rules and a computer opponent",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node tests/rules.test.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "three": "^0.187.0"
+  }
+}
